@@ -1,7 +1,6 @@
 pragma solidity >=0.5.0;
 
-import '@cremepie/core/contracts/interfaces/ICremePiePair.sol';
-
+import '@bscex/core/contracts/interfaces/IUniswapV2Pair.sol';
 import "./SafeMath.sol";
 
 library UniswapV2Library {
@@ -21,14 +20,14 @@ library UniswapV2Library {
                 hex'ff',
                 factory,
                 keccak256(abi.encodePacked(token0, token1)),
-                hex'96e8ac4277198ff8b6f785478aa9a39f403cb768dd02cbee326c3e7da348845f' // init code hash
+                hex'ab2a33f103ee3cce491362fec7f40f7e090a8154f52f87f2aa6896f10be48052' // init code hash
             ))));
     }
 
     // fetches and sorts the reserves for a pair
     function getReserves(address factory, address tokenA, address tokenB) internal view returns (uint reserveA, uint reserveB) {
         (address token0,) = sortTokens(tokenA, tokenB);
-        (uint reserve0, uint reserve1,) = ICremePiePair(pairFor(factory, tokenA, tokenB)).getReserves();
+        (uint reserve0, uint reserve1,) = IUniswapV2Pair(pairFor(factory, tokenA, tokenB)).getReserves();
         (reserveA, reserveB) = tokenA == token0 ? (reserve0, reserve1) : (reserve1, reserve0);
     }
 
@@ -78,5 +77,11 @@ library UniswapV2Library {
             (uint reserveIn, uint reserveOut) = getReserves(factory, path[i - 1], path[i]);
             amounts[i - 1] = getAmountIn(amounts[i], reserveIn, reserveOut);
         }
+    }
+
+    // get fee for token fee
+    function getTokenSellFee(uint amount, uint tokenFee) internal pure returns (uint fee) {
+        require(amount > 0 && tokenFee > 0, 'UniswapV2Library: INVALID_GET_FEE');
+        fee = amount.sub(amount.mul(tokenFee) / 1000);
     }
 }

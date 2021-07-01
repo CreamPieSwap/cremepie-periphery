@@ -3,7 +3,7 @@ import { solidity, MockProvider, createFixtureLoader, deployContract } from 'eth
 import { Contract } from 'ethers'
 import { BigNumber, bigNumberify } from 'ethers/utils'
 import { MaxUint256 } from 'ethers/constants'
-import IUniswapV2Pair from '@uniswap/v2-core/build/IUniswapV2Pair.json'
+import IUniswapV2Pair from '@bscex/core/build/IUniswapV2Pair.json'
 
 import { v2Fixture } from './shared/fixtures'
 import { expandTo18Decimals, getApprovalDigest, MINIMUM_LIQUIDITY } from './shared/utilities'
@@ -17,7 +17,7 @@ const overrides = {
   gasLimit: 9999999
 }
 
-describe('CremePieRouter02', () => {
+describe('UniswapV2Router02', () => {
   const provider = new MockProvider({
     hardfork: 'istanbul',
     mnemonic: 'horn horn horn horn horn horn horn horn horn horn horn horn',

@@ -4,8 +4,8 @@ import { deployContract } from 'ethereum-waffle'
 
 import { expandTo18Decimals } from './utilities'
 
-import UniswapV2Factory from '@uniswap/v2-core/build/UniswapV2Factory.json'
-import IUniswapV2Pair from '@uniswap/v2-core/build/IUniswapV2Pair.json'
+import UniswapV2Factory from '@bscex/core/build/UniswapV2Factory.json'
+import IUniswapV2Pair from '@bscex/core/build/IUniswapV2Pair.json'
 
 import ERC20 from '../../build/ERC20.json'
 import WETH9 from '../../build/WETH9.json'
@@ -13,7 +13,7 @@ import UniswapV1Exchange from '../../build/UniswapV1Exchange.json'
 import UniswapV1Factory from '../../build/UniswapV1Factory.json'
 import UniswapV2Router01 from '../../build/UniswapV2Router01.json'
 import UniswapV2Migrator from '../../build/UniswapV2Migrator.json'
-import CremePieRouter02 from '../../build/CremePieRouter02.json'
+import UniswapV2Router02 from '../../build/UniswapV2Router02.json'
 import RouterEventEmitter from '../../build/RouterEventEmitter.json'
 
 const overrides = {
@@ -53,7 +53,7 @@ export async function v2Fixture(provider: Web3Provider, [wallet]: Wallet[]): Pro
 
   // deploy routers
   const router01 = await deployContract(wallet, UniswapV2Router01, [factoryV2.address, WETH.address], overrides)
-  const router02 = await deployContract(wallet, CremePieRouter02, [factoryV2.address, WETH.address], overrides)
+  const router02 = await deployContract(wallet, UniswapV2Router02, [factoryV2.address, WETH.address], overrides)
 
   // event emitter for testing
   const routerEventEmitter = await deployContract(wallet, RouterEventEmitter, [])

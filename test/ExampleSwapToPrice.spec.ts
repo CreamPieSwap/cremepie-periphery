@@ -192,7 +192,7 @@ describe('ExampleSwapToPrice', () => {
         overrides
       )
       const receipt = await tx.wait()
-      expect(receipt.gasUsed).to.eq('123325')
+      expect(receipt.gasUsed).to.eq('122329')
     }).retries(2) // gas test is inconsistent
   })
 })
