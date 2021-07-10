@@ -1,6 +1,6 @@
 pragma solidity =0.6.6;
 
-import '@bscex/core/contracts/interfaces/IUniswapV2Callee.sol';
+import '@cremepie/core/contracts/interfaces/IUniswapV2Callee.sol';
 
 import '../libraries/UniswapV2Library.sol';
 import '../interfaces/V1/IUniswapV1Factory.sol';

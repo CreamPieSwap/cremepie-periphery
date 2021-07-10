@@ -1,7 +1,7 @@
 pragma solidity =0.6.6;
 
-import '@bscex/core/contracts/interfaces/IUniswapV2Factory.sol';
-import '@bscex/lib/contracts/libraries/TransferHelper.sol';
+import '@cremepie/core/contracts/interfaces/IUniswapV2Factory.sol';
+import '@cremepie/lib/contracts/libraries/TransferHelper.sol';
 
 import './interfaces/IUniswapV2Router02.sol';
 import './libraries/UniswapV2Library.sol';
